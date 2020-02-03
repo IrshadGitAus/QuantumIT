@@ -123,3 +123,5 @@ C:\Users\s87426\Desktop\Desktop\DotNET\QuantumITApp\QuantumITApp.API\QuantumITAp
 C:\Users\s87426\Desktop\Desktop\DotNET\QuantumITApp\QuantumITApp.API\QuantumITApp.API\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.JsonPatch.dll
 C:\Users\s87426\Desktop\Desktop\DotNET\QuantumITApp\QuantumITApp.API\QuantumITApp.API\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Users\s87426\Desktop\Desktop\DotNET\QuantumITApp\QuantumITApp.API\QuantumITApp.API\bin\Debug\netcoreapp3.0\Newtonsoft.Json.Bson.dll
+C:\Users\s87426\Desktop\Desktop\DotNET\QuantumITApp\QuantumITApp.API\QuantumITApp.API\bin\Debug\netcoreapp3.0\quantumitapp.db
+C:\Users\s87426\Desktop\Desktop\DotNET\QuantumITApp\QuantumITApp.API\QuantumITApp.API\bin\Debug\netcoreapp3.0\Web.RemoveHandlers.config
