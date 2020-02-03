@@ -19,12 +19,14 @@ namespace QuantumITApp.API.Controllers
         public readonly IStudentRepository _repo;
         private readonly IMapper _mapper;
         private readonly IQuantumITAppService _quantumITAppService;
+        private string _error;
 
         public StudentsController(IStudentRepository repo, IMapper mapper, IQuantumITAppService quantumITAppService)
         {
             _repo = repo;
             _mapper = mapper;
             _quantumITAppService = quantumITAppService;
+            _error = "Sorry!! Student with this Last Name already exists in this class.";
         }
 
         // GET: api/Students
@@ -48,9 +50,9 @@ namespace QuantumITApp.API.Controllers
         public async Task<IActionResult> AddStudent([FromBody] StudentAddModel studentToAdd)
         {
             var student = await _quantumITAppService.AddStudentAsync(studentToAdd);
+            if (!student)
+                return BadRequest(_error);
             return Ok(student);
-
-            throw new Exception($"adding new student failed!");
 
         }
 
@@ -59,9 +61,9 @@ namespace QuantumITApp.API.Controllers
         public async Task<IActionResult> UpdateStudent(int id, [FromBody] StudentEditModel studentForUpdate)
         {
             var student = await _quantumITAppService.UpdateStudentAsync(id, studentForUpdate);
+            if (!student)
+                return BadRequest(_error);
             return Ok(student);
-
-            throw new Exception($"updating student {id} failed on save!");
 
         }
 
@@ -71,8 +73,6 @@ namespace QuantumITApp.API.Controllers
         {
             var student = await _quantumITAppService.DeleteStudentAsync(id);
             return Ok(student);
-
-            throw new Exception($"deleting student {id} failed on save!");
         }
     }
 }

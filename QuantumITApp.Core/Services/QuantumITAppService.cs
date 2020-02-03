@@ -105,7 +105,7 @@ namespace QuantumITApp.Core.Services
         {
             var students = await _studentRepository.GetStudentsBySubjectIdAsync(studentToAdd.SubjectId);
 
-            var studentFound = students.FirstOrDefault(st => st.SurName == studentToAdd.SurName);
+            var studentFound = students.FirstOrDefault(st => st.SurName.ToLower().Trim() == studentToAdd.SurName.ToLower().Trim());
             if (studentFound == null)
                 return true;
             return false;
@@ -117,7 +117,10 @@ namespace QuantumITApp.Core.Services
 
             student = _mapper.Map<StudentEditModel, Student>(studentForUpdate, student);
 
-            return await _studentRepository.UpdateAsync(student);
+            if (await ValidStudent(_mapper.Map<StudentAddModel>(studentForUpdate)))
+                return await _studentRepository.UpdateAsync(student);
+
+            return false;
         }
 
         public async Task<bool> DeleteStudentAsync(int id)

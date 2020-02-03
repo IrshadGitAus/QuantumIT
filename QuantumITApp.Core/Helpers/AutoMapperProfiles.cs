@@ -24,6 +24,8 @@ namespace QuantumITApp.Core.Helpers
             CreateMap<Student, StudentAddModel>();
 
             CreateMap<Student, StudentModel>();
+
+            CreateMap<StudentEditModel, StudentAddModel>();
         }           
             
     }

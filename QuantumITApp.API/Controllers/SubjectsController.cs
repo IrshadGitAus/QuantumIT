@@ -52,9 +52,11 @@ namespace QuantumITApp.API.Controllers
         public async Task<IActionResult> AddSubject([FromBody] SubjectEditModel subjectForUpdate)
         {
             var subject = await _quantumITAppService.AddSubjectAsync(subjectForUpdate);
+            if (subject == null)
+                return BadRequest("Subject with this name already exists!");
             return Ok(subject);
 
-            throw new Exception($"adding new subject failed!");
+
         }
 
 
@@ -63,9 +65,10 @@ namespace QuantumITApp.API.Controllers
         public async Task<IActionResult> UpdateSubject(int id, [FromBody] SubjectEditModel subjectForUpdate)
         {
             var subject = await _quantumITAppService.UpdateSubjectAsync(id, subjectForUpdate);
+            if (!subject)
+                return BadRequest("Subject with this name already exists!");
             return Ok(subject);
 
-            throw new Exception($"updating subject {id} failed on save!");
         }
 
         // DELETE: api/ApiWithActions/5
@@ -74,8 +77,6 @@ namespace QuantumITApp.API.Controllers
         {
             var subject = await _quantumITAppService.DeleteSubjectAsync(id);
             return Ok(subject);
-
-            throw new Exception($"deleting subject {id} failed on save!");
         }
     }
 }
