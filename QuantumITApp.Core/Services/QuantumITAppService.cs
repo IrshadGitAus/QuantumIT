@@ -53,11 +53,11 @@ namespace QuantumITApp.Core.Services
 
         public async Task<bool> UpdateSubjectAsync(int id, SubjectEditModel subjectForUpdate)
         {
-            var subject = await _subjectRepository.GetByIdAsync(id);
+            //var subject = await _subjectRepository.GetByIdAsync(id);
 
-            subject = _mapper.Map<SubjectEditModel, Subject>(subjectForUpdate, subject);
+            var subject = _mapper.Map<Subject>(subjectForUpdate);
 
-            return await _subjectRepository.UpdateAsync(subject);            
+            return await _subjectRepository.UpdateAsync(id, subject);     
         }
 
 
@@ -101,7 +101,7 @@ namespace QuantumITApp.Core.Services
             return false;
         }
 
-        private async Task<bool> ValidStudent(StudentAddModel studentToAdd)
+        public async Task<bool> ValidStudent(StudentAddModel studentToAdd)
         {
             var students = await _studentRepository.GetStudentsBySubjectIdAsync(studentToAdd.SubjectId);
 
@@ -111,15 +111,33 @@ namespace QuantumITApp.Core.Services
             return false;
         }
 
+       
         public async Task<bool> UpdateStudentAsync(int id, StudentEditModel studentForUpdate)
         {
-            var student = await _studentRepository.GetByIdAsync(id);
+           //var student = await _studentRepository.GetByIdAsync(id);
 
-            student = _mapper.Map<StudentEditModel, Student>(studentForUpdate, student);
+            var subjectId = studentForUpdate.SubjectId;
+           
+            if (await ValidStudentEdit(id, studentForUpdate))
+            {
+                var student = _mapper.Map<Student>(studentForUpdate);
+                return await _studentRepository.UpdateAsync(id, student);
+            }
+               
 
-            if (await ValidStudent(_mapper.Map<StudentAddModel>(studentForUpdate)))
-                return await _studentRepository.UpdateAsync(student);
+            return false;
+        }
 
+        public async Task<bool> ValidStudentEdit(int id, StudentEditModel studentToUpdate)
+        {
+           var students = await _studentRepository.GetStudentsBySubjectIdAsync(studentToUpdate.SubjectId);
+
+            var studentsToCheck = students.SkipWhile(st => st.Id == id);
+
+           var studentFound = studentsToCheck.FirstOrDefault(st => st.SurName.ToLower().Trim() == studentToUpdate.SurName.ToLower().Trim());
+           
+           if (studentFound == null)
+                return true;
             return false;
         }
 

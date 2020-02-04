@@ -61,10 +61,11 @@ namespace QuantumITApp.Infrastructure.Repositories
             return await students.ToListAsync<Student>();
         }
 
-        public async Task<bool> UpdateAsync(Student student)
+        public async Task<bool> UpdateAsync(int id, Student student)
         {
-            if (!await StudentExists(student.Id))
+            if (!await StudentExists(id))
                 return false;
+
             _context.Students.Update(student);
             await _context.SaveChangesAsync();
             return true;

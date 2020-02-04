@@ -37,13 +37,28 @@ namespace QuantumITApp.Infrastructure.Repositories
             return await _context.Subjects.FindAsync(id);
         }
 
-        public async Task<bool> UpdateAsync(Subject subject)
+        public async Task<bool> UpdateAsync(int id, Subject subject)
         {
-            if (await SubjectNameExists(subject.Name))
+            if (!await SubjectExists(id))
                 return false;
-            _context.Subjects.Update(subject);
-            await _context.SaveChangesAsync();
-            return true;
+
+            var subjectCurrent = await GetByIdAsync(id);
+            if (subjectCurrent.Name.ToLower() == subject.Name.ToLower())
+            {
+                _context.Subjects.Update(subject);
+                await _context.SaveChangesAsync();
+                return true;
+
+            }
+            else
+            {
+                if (await SubjectNameExists(subject.Name))
+                    return false;
+
+                _context.Subjects.Update(subject);
+                await _context.SaveChangesAsync();
+                return true;
+            }            
         }
 
         public async Task<bool> DeleteAsync(int id)

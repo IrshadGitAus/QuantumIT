@@ -11,3 +11,4 @@ C:\Users\s87426\Desktop\Desktop\DotNET\QuantumITApp\QuantumITApp.API\QuantumITAp
 C:\Users\s87426\Desktop\Desktop\DotNET\QuantumITApp\QuantumITApp.API\QuantumITApp.Infrastructure\obj\Debug\netcoreapp3.0\QuantumITApp.Infrastructure.csproj.CopyComplete
 C:\Users\s87426\Desktop\Desktop\DotNET\QuantumITApp\QuantumITApp.API\QuantumITApp.Infrastructure\obj\Debug\netcoreapp3.0\QuantumITApp.Infrastructure.dll
 C:\Users\s87426\Desktop\Desktop\DotNET\QuantumITApp\QuantumITApp.API\QuantumITApp.Infrastructure\obj\Debug\netcoreapp3.0\QuantumITApp.Infrastructure.pdb
+C:\Users\s87426\Desktop\Desktop\DotNET\QuantumITApp\QuantumITApp.API\QuantumITApp.Infrastructure\bin\Debug\netcoreapp3.0\quantumitapp.db

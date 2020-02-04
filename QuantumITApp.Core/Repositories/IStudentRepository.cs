@@ -11,7 +11,7 @@ namespace QuantumITApp.Core.Repositories
         Task<IEnumerable<Student>> GetAllAsync();
         Task<Student> GetByIdAsync(int id);
         Task<Student> AddAsync(Student newStudent);
-        Task<bool> UpdateAsync(Student student);
+        Task<bool> UpdateAsync(int id, Student student);
         Task<bool> DeleteAsync(int id);
         Task<bool> AddSubjectStudentAsync(Student newStudent, int subjectId);
         Task<IEnumerable<Student>> GetStudentsBySubjectIdAsync(int subjectId);
