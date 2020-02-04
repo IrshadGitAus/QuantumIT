@@ -16,15 +16,11 @@ namespace QuantumITApp.API.Controllers
     [ApiController]
     public class StudentsController : ControllerBase
     {
-        public readonly IStudentRepository _repo;
-        private readonly IMapper _mapper;
         private readonly IQuantumITAppService _quantumITAppService;
         private string _error;
 
-        public StudentsController(IStudentRepository repo, IMapper mapper, IQuantumITAppService quantumITAppService)
+        public StudentsController(IQuantumITAppService quantumITAppService)
         {
-            _repo = repo;
-            _mapper = mapper;
             _quantumITAppService = quantumITAppService;
             _error = "Sorry!! Student with this Last Name already exists in this class.";
         }
