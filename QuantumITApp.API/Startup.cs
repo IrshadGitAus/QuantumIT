@@ -48,6 +48,10 @@ namespace QuantumITApp.API
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseDeveloperExceptionPage();
+            }
 
             app.UseRouting();
 
