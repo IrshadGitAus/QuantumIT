@@ -14,6 +14,7 @@ namespace QuantumITApp.API
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
+            CurrentDirectoryHelpers.SetCurrentDirectory();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
