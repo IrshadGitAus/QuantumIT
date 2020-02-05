@@ -19,6 +19,12 @@
     <ProjectReference Include="..\QuantumITApp.Infrastructure\QuantumITApp.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="quantumitapp.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
 
 
